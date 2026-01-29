@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0A84FF">
+    <meta name="description" content="Sistema de fichaje y gestión de empleados para Albaluz Desarrollos Urbanos">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <title>Gestión de Fichajes - Liquid Glass</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles-v7.css">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="glass-card login-card">
+                <div class="logo-container">
+                    <div class="logo-glass">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="30" r="28" stroke="url(#logoGradient)" stroke-width="2" />
+                            <path d="M30 15V30L40 35" stroke="url(#logoGradient)" stroke-width="3"
+                                stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0" y1="0" x2="60" y2="60">
+                                    <stop offset="0%" stop-color="#00D4FF" />
+                                    <stop offset="100%" stop-color="#7B61FF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h1 class="app-title">Gestión de Fichajes</h1>
+                    <p class="app-subtitle">Sistema de control horario</p>
+                </div>
+
+                <form id="loginForm" class="auth-form">
+                    <div class="input-group">
+                        <label for="loginEmail">Correo Electrónico</label>
+                        <div class="glass-input">
+                            <input type="email" id="loginEmail" required placeholder="tu@email.com">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="loginPassword">Contraseña</label>
+                        <div class="glass-input">
+                            <input type="password" id="loginPassword" required placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="glass-button primary">
+                        <span>Iniciar Sesión</span>
+                    </button>
+
+                    <button type="button" class="glass-button secondary" id="showRegisterBtn">
+                        <span>Registrarse</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Screen -->
+    <div id="registerScreen" class="screen">
+        <div class="login-container">
+            <div class="glass-card login-card">
+                <div class="logo-container">
+                    <h1 class="app-title">Crear Cuenta</h1>
+                    <p class="app-subtitle">Completa tus datos</p>
+                </div>
+
+                <form id="registerForm" class="auth-form">
+                    <div class="input-group">
+                        <label for="regEmail">Correo Electrónico</label>
+                        <div class="glass-input">
+                            <input type="email" id="regEmail" required placeholder="tu@email.com">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regPassword">Contraseña</label>
+                        <div class="glass-input">
+                            <input type="password" id="regPassword" required placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regPasswordConfirm">Confirmar Contraseña</label>
+                        <div class="glass-input">
+                            <input type="password" id="regPasswordConfirm" required placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regNombre">Nombre</label>
+                        <div class="glass-input">
+                            <input type="text" id="regNombre" required placeholder="Tu nombre">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regApellidos">Apellidos</label>
+                        <div class="glass-input">
+                            <input type="text" id="regApellidos" required placeholder="Tus apellidos">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regAfiliacion">Nº Afiliación</label>
+                        <div class="glass-input">
+                            <input type="text" id="regAfiliacion" required placeholder="123456789012">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regDNI">DNI</label>
+                        <div class="glass-input">
+                            <input type="text" id="regDNI" required placeholder="12345678A">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="glass-button primary">
+                        <span>Crear Cuenta</span>
+                    </button>
+
+                    <button type="button" class="glass-button secondary" id="backToLoginBtn">
+                        <span>Volver al Login</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Screen -->
+    <div id="changePasswordScreen" class="screen">
+        <div class="login-container">
+            <div class="glass-card login-card">
+                <div class="logo-container">
+                    <div class="logo-glass">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="30" r="28" stroke="url(#logoGradient)" stroke-width="2" />
+                            <path d="M30 15V30L40 35" stroke="url(#logoGradient)" stroke-width="3"
+                                stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="logoGradient2" x1="0" y1="0" x2="60" y2="60">
+                                    <stop offset="0%" stop-color="#00D4FF" />
+                                    <stop offset="100%" stop-color="#FF00E5" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <h1 class="auth-title">Cambiar Contraseña</h1>
+                <p class="auth-subtitle">Por seguridad, debes actualizar tu contraseña</p>
+
+                <form id="changePasswordForm" class="auth-form">
+                    <div class="input-group">
+                        <label for="newPassword">Nueva Contraseña</label>
+                        <div class="glass-input">
+                            <input type="password" id="newPassword" required placeholder="••••••••" minlength="6">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="glass-button primary">
+                        <span>Actualizar Contraseña</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Screen -->
+    <div id="appScreen" class="screen">
+        <!-- Header -->
+        <header class="app-header glass-card">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <span id="userInitials">U</span>
+                </div>
+                <div class="user-details">
+                    <h3 id="userName">Usuario</h3>
+                    <p id="userRole">Empleado</p>
+                </div>
+            </div>
+            <button class="glass-button icon-btn" id="logoutBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+            </button>
+        </header>
+
+        <!-- Content Area -->
+        <main class="app-content">
+            <!-- Fichaje Tab -->
+            <div id="fichajeTab" class="tab-content active">
+                <div class="glass-card content-card">
+                    <h2 class="section-title">Control de Fichaje</h2>
+
+
+                    <h3 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 600;">Registro Manual</h3>
+                    <div class="date-selector-container">
+                        <label>Fecha del Fichaje</label>
+                        <div class="glass-input date-input-wrapper">
+                            <input type="date" id="fichajeDate" class="date-input">
+                        </div>
+                    </div>
+
+                    <div class="time-input-row">
+                        <div class="time-group-compact">
+                            <label>Hora de Entrada</label>
+                            <div class="glass-time-picker">
+                                <input type="time" id="entryTime" class="time-input">
+                            </div>
+                        </div>
+                        <div class="time-group-compact">
+                            <label>Hora de Salida</label>
+                            <div class="glass-time-picker">
+                                <input type="time" id="exitTime" class="time-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="signatures-grid">
+                        <div class="mini-sig-container">
+                            <label class="mini-sig-label">Firma Entrada</label>
+                            <div class="glass-signature-pad mini">
+                                <canvas id="entrySigPad" width="150" height="60"></canvas>
+                            </div>
+                            <button type="button" class="text-btn" id="clearEntrySig">Limpiar</button>
+                        </div>
+                        <div class="mini-sig-container">
+                            <label class="mini-sig-label">Firma Salida</label>
+                            <div class="glass-signature-pad mini">
+                                <canvas id="exitSigPad" width="150" height="60"></canvas>
+                            </div>
+                            <button type="button" class="text-btn" id="clearExitSig">Limpiar</button>
+                        </div>
+                    </div>
+
+                    <button class="glass-button primary large" id="registerFichajeBtn">
+                        <span>Registrar Fichaje</span>
+                    </button>
+
+                    <div class="today-fichajes" id="todayFichajes">
+                        <h3>Fichajes de Hoy</h3>
+                        <div id="todayList" class="fichaje-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historico Tab -->
+            <div id="historicoTab" class="tab-content">
+                <div class="glass-card content-card">
+                    <div class="calendar-header">
+                        <button class="glass-button icon-btn" id="prevMonthBtn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="12 4 6 10 12 16" />
+                            </svg>
+                        </button>
+                        <h2 id="calendarMonth">Enero 2024</h2>
+                        <button class="glass-button icon-btn" id="nextMonthBtn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="8 4 14 10 8 16" />
+                            </svg>
+                        </button>
+                    </div>
+
+
+
+                    <div class="calendar-grid" id="calendarGrid"></div>
+
+                    <div class="legend">
+                        <div class="legend-item">
+                            <span class="legend-dot complete"></span>
+                            <span>Completo</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot missing"></span>
+                            <span>Falta fichaje</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot future"></span>
+                            <span>Futuro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Firma Tab -->
+            <div id="firmaTab" class="tab-content">
+                <div class="glass-card content-card">
+                    <h2 class="section-title">Firma de Fichaje</h2>
+                    <p class="section-subtitle">Genera tu informe mensual</p>
+
+                    <div class="signature-section">
+                        <label>Firma aquí</label>
+                        <div class="glass-signature-pad">
+                            <canvas id="signaturePad" width="600" height="300"></canvas>
+                        </div>
+                        <button class="glass-button secondary small" id="clearSignatureBtn">
+                            <span>Limpiar Firma</span>
+                        </button>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="glass-button primary" id="generatePdfBtn">
+                            <span>Generar PDF</span>
+                        </button>
+                        <button class="glass-button secondary" id="sharePdfBtn">
+                            <span>Compartir</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Tab -->
+            <div id="adminTab" class="tab-content">
+                <div class="glass-card content-card">
+                    <h2 class="section-title">Panel de Administración</h2>
+
+                    <div class="admin-stats">
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon employees">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 id="totalEmployees">0</h3>
+                                <p>Empleados</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon fichajes">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="9 11 12 14 22 4"></polyline>
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 id="todayFichajes">0</h3>
+                                <p>Fichajes Hoy</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search and Bulk Actions -->
+                    <div class="admin-toolbar">
+                        <button class="glass-button icon-btn" onclick="window.app.exportAllPDFs()"
+                            style="margin-right: 8px;" title="Generar Todos los PDFs">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="12" y1="18" x2="12" y2="12"></line>
+                                <polyline points="9 15 12 18 15 15"></polyline>
+                            </svg>
+                        </button>
+                        <div class="search-container glass-card">
+                            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                            <input type="text" id="adminSearch" placeholder="Buscar empleado..." class="search-input">
+                        </div>
+                        <div id="bulkActionsBar" class="bulk-actions-bar glass-card" style="display: none;">
+                            <span id="selectedCount">0 seleccionados</span>
+                            <button class="bulk-btn" id="bulkGeneratePDF">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                </svg>
+                                Generar PDFs
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="employee-list" id="employeeList"></div>
+                </div>
+            </div>
+
+            <!-- Estadísticas Tab (Admin only) -->
+            <div id="estadisticasTab" class="tab-content">
+                <div class="glass-card content-card">
+                    <h2 class="section-title">📈 Estadísticas</h2>
+                    <div id="statsContent">
+                        <div class="stats-grid">
+                            <div class="stat-card glass-card">
+                                <h3>Asistencia Semanal</h3>
+                                <div id="weeklyChart" class="chart-container"></div>
+                            </div>
+                            <div class="stat-card glass-card">
+                                <h3>Top Empleados</h3>
+                                <div id="topEmployees"></div>
+                            </div>
+                            <div class="stat-card glass-card">
+                                <h3>Alertas</h3>
+                                <div id="alerts"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Mi Dashboard Tab (Employee only) -->
+            <div id="dashboardTab" class="tab-content">
+                <div class="glass-card content-card">
+                    <h2 class="section-title">📊 Mi Dashboard</h2>
+                    <div class="dashboard-grid">
+                        <div class="stat-card glass-card" style="padding: 20px;">
+                            <h3 style="font-size: 14px; color: var(--text-tertiary); margin: 0 0 12px 0;">Horas Este Mes
+                            </h3>
+                            <div id="monthHours"
+                                style="font-size: 36px; font-weight: 700; background: linear-gradient(90deg, #0A84FF, #BF5AF2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                0h</div>
+                        </div>
+                        <div class="stat-card glass-card" style="padding: 20px;">
+                            <h3 style="font-size: 14px; color: var(--text-tertiary); margin: 0 0 12px 0;">Promedio
+                                Diario</h3>
+                            <div id="avgDaily" style="font-size: 36px; font-weight: 700; color: #30d158;">0h</div>
+                        </div>
+                        <div class="stat-card glass-card" style="padding: 20px;">
+                            <h3 style="font-size: 14px; color: var(--text-tertiary); margin: 0 0 12px 0;">Días
+                                Trabajados</h3>
+                            <div id="daysWorked" style="font-size: 36px; font-weight: 700; color: #64D2FF;">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mis Documentos Tab (Employee only) -->
+            <div id="documentosTab" class="tab-content">
+                <div class="glass-card content-card">
+                    <h2 class="section-title">📄 Mis Documentos</h2>
+                    <div id="documentsList">
+                        <p style="text-align: center; color: var(--text-tertiary); padding: 40px;">
+                            Aquí aparecerán tus PDFs generados
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settingsTab" class="tab-content">
+                <div class="glass-card content-card">
+                    <h2 class="section-title">Ajustes de Perfil</h2>
+
+                    <div class="profile-photo-section" style="text-align: center; margin-bottom: 24px;">
+                        <div class="profile-avatar-large"
+                            style="width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.1); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                            <img id="settingsProfileImg" src=""
+                                style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                            <span id="settingsProfilePlaceholder" style="font-size: 32px;">👤</span>
+                        </div>
+                        <label for="profilePhotoInput" class="text-btn"
+                            style="cursor: pointer; color: var(--accent-color);">Cambiar Foto</label>
+                        <input type="file" id="profilePhotoInput" accept="image/*" style="display: none;">
+                    </div>
+
+                    <form id="settingsForm" class="form-container">
+                        <div class="form-group">
+                            <label for="settingsNombre">Nombre</label>
+                            <input type="text" id="settingsNombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="settingsApellidos">Apellidos</label>
+                            <input type="text" id="settingsApellidos" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="settingsDni">DNI</label>
+                            <input type="text" id="settingsDni" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="settingsAfiliacion">Nº Afiliación</label>
+                            <input type="text" id="settingsAfiliacion">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="settingsEmail">Email (no editable)</label>
+                            <input type="email" id="settingsEmail" disabled>
+                        </div>
+
+                        <button type="submit" class="glass-button primary">
+                            <span>Guardar Cambios</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- Admin Settings Tab -->
+            <div id="adminSettingsTab" class="tab-content">
+                <div class="glass-card content-card">
+                    <h2 class="section-title">Ajustes de Empresa</h2>
+
+                    <div style="margin-bottom: 20px;">
+                        <button class="glass-button primary" onclick="window.app.showCompanyModal()">
+                            + Nueva Empresa
+                        </button>
+                    </div>
+
+                    <div id="companiesList" class="companies-grid">
+                        <!-- Companies will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating Tab Bar (Pure CSS Liquid Glass) -->
+        <nav class="floating-tab-bar">
+            <div class="active-tab-indicator" id="tabIndicator"></div>
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="fichaje">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    <span>Fichaje</span>
+                </button>
+                <button class="tab-btn" data-tab="historico">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                    <span>Histórico</span>
+                </button>
+                <button class="tab-btn" data-tab="firma">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+                    </svg>
+                    <span>Firma</span>
+                </button>
+                <!-- Settings (Now always visible) -->
+                <button class="tab-btn" data-tab="settings" id="settingsTabBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" />
+                    </svg>
+                    <span>Ajustes</span>
+                </button>
+
+                <!-- Admin Tabs (Hidden by default, managed by JS) -->
+                <button class="tab-btn" data-tab="admin" id="adminTabBtn" style="display: none;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                        <path d="M2 17l10 5 10-5" />
+                        <path d="M2 12l10 5 10-5" />
+                    </svg>
+                    <span>Empleados</span>
+                </button>
+                <button class="tab-btn" data-tab="estadisticas" id="estadisticasTabBtn" style="display: none;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="20" x2="12" y2="10"></line>
+                        <line x1="18" y1="20" x2="18" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="16"></line>
+                    </svg>
+                    <span>Estadísticas</span>
+                </button>
+                <button class="tab-btn" data-tab="adminSettings" id="adminSettingsTabBtn" style="display: none;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                    <span>Aj. Admin</span>
+                </button>
+
+
+
+            </div>
+
+            <!-- More Menu (Mobile Pop-up) -->
+
+        </nav>
+    </div>
+
+    <!-- User Edit Modal -->
+    <div id="userEditModal" class="custom-modal">
+        <div class="custom-modal-backdrop" onclick="window.app.closeUserEditModal()"></div>
+        <div class="custom-modal-content glass-card">
+            <h3 class="custom-modal-title">Editar Usuario</h3>
+            <form id="userEditForm">
+                <input type="hidden" id="editUserId">
+
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" id="editNombre" class="glass-input">
+                </div>
+                <div class="form-group">
+                    <label>Apellidos</label>
+                    <input type="text" id="editApellidos" class="glass-input">
+                </div>
+                <div class="form-group">
+                    <label>DNI</label>
+                    <input type="text" id="editDni" class="glass-input">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="editEmail" class="glass-input">
+                </div>
+                <div class="form-group">
+                    <label>Empresa Asignada</label>
+                    <select id="editCompanyId" class="glass-select">
+                        <option value="">ALBALUZ (Por defecto)</option>
+                        <!-- Companies loaded dynamically -->
+                    </select>
+                </div>
+
+                <div class="custom-modal-buttons">
+                    <button type="button" class="custom-modal-btn cancel"
+                        onclick="window.app.closeUserEditModal()">Cancelar</button>
+                    <button type="submit" class="custom-modal-btn confirm">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Company Edit Modal -->
+    <div id="companyModal" class="custom-modal">
+        <div class="custom-modal-backdrop" onclick="window.app.closeCompanyModal()"></div>
+        <div class="custom-modal-content glass-card">
+            <h3 class="custom-modal-title" id="companyModalTitle">Nueva Empresa</h3>
+            <form id="companyForm">
+                <input type="hidden" id="companyId">
+
+                <div class="form-group">
+                    <label>Nombre Empresa</label>
+                    <input type="text" id="compName" class="glass-input" required>
+                </div>
+                <div class="form-group">
+                    <label>C.I.F. / N.I.F.</label>
+                    <input type="text" id="compCif" class="glass-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Centro de Trabajo</label>
+                    <input type="text" id="compAddress" class="glass-input">
+                </div>
+                <div class="form-group">
+                    <label>C.C.C.</label>
+                    <input type="text" id="compCcc" class="glass-input">
+                </div>
+                <div class="form-group">
+                    <label>Sello (Imagen PNG)</label>
+                    <input type="file" id="compSeal" accept="image/png" class="glass-input">
+                    <div id="compSealPreview" style="margin-top: 10px; max-width: 100px;"></div>
+                </div>
+
+                <div class="custom-modal-buttons">
+                    <button type="button" class="custom-modal-btn cancel"
+                        onclick="window.app.closeCompanyModal()">Cancelar</button>
+                    <button type="submit" class="custom-modal-btn confirm">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast glass-card"></div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content glass-card">
+            <h3 class="modal-title">Registro Existente</h3>
+            <p class="modal-body">Ya existe un fichaje para hoy. ¿Deseas reemplazarlo con los nuevos datos?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" id="cancelReplace">Cancelar</button>
+                <button class="modal-btn confirm" id="confirmReplace">Reemplazar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Modal (Reusable) -->
+    <div id="customConfirmModal" class="custom-modal">
+        <div class="custom-modal-backdrop"></div>
+        <div class="custom-modal-content glass-card">
+            <div class="custom-modal-icon" id="customModalIcon"></div>
+            <h3 class="custom-modal-title" id="customModalTitle">Confirmar Acción</h3>
+            <p class="custom-modal-body" id="customModalBody">¿Estás seguro?</p>
+            <div class="custom-modal-buttons">
+                <button class="custom-modal-btn cancel" id="customModalCancel">Cancelar</button>
+                <button class="custom-modal-btn confirm" id="customModalConfirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Libraries (pdfmake) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.9/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.9/vfs_fonts.js"></script>
+
+    <script src="assets/js/app-v9.js?v=9.2"></script>
+</body>
+
+</html>
