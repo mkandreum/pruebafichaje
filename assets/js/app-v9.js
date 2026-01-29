@@ -949,9 +949,14 @@ class FichajeApp {
         // Company Seal
         let companySignature = { text: '', width: '50%', height: 40 };
         if (companyProfile && companyProfile.sealImage) {
-            // Adjust margin to place it below text? Or absolute? 
-            // Logic says "estampará justo debajo del texto".
-            companySignature = { image: companyProfile.sealImage, width: 120, alignment: 'center', margin: [0, -10, 0, 0] };
+            // Use 'fit' to constrain dimensions and prevent page breaks
+            // Remove negative margin to stop it from covering the text
+            companySignature = {
+                image: companyProfile.sealImage,
+                fit: [120, 50],
+                alignment: 'center',
+                margin: [0, 5, 0, 0]
+            };
         }
 
         // Document Definition
@@ -959,7 +964,7 @@ class FichajeApp {
             pageSize: 'A4',
             pageMargins: [20, 5, 20, 5],
             content: [
-                { text: 'Listado Resumen mensual del registro de jornada (completo)', style: 'mainHeader' },
+                { text: 'Listado Resumen mensual del registro de jornada (completo)', style: 'mainHeader', margin: [0, 0, 0, 5] },
                 {
                     style: 'headerTable',
                     table: {
@@ -971,7 +976,7 @@ class FichajeApp {
                         vLineWidth: function (i, node) { return 0.5; },
                     }
                 },
-                { text: '', margin: [0, 5] },
+                { text: '', margin: [0, 2] }, // Reduced margin
                 {
                     style: 'mainGrid',
                     table: {
@@ -987,7 +992,7 @@ class FichajeApp {
                         }
                     }
                 },
-                { text: '', margin: [0, 8] },
+                { text: '', margin: [0, 5] }, // Reduced margin
                 {
                     columns: [
                         { text: 'Firma de la empresa:', width: '50%', style: 'signatureLabel' },
