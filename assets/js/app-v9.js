@@ -999,7 +999,7 @@ class FichajeApp {
                         body: [
                             [
                                 { text: 'Firma de la empresa:', style: 'signatureLabel', alignment: 'left', border: [false, false, false, false], color: 'black' },
-                                { text: 'Firma del trabajador:', style: 'signatureLabel', alignment: 'right', border: [false, false, false, false], color: 'black' }
+                                { text: 'Firma del trabajador:', style: 'signatureLabel', alignment: 'left', border: [false, false, false, false], color: 'black' }
                             ],
                             [
                                 {
@@ -1010,7 +1010,7 @@ class FichajeApp {
                                 {
                                     stack: [employeeSignatureImg],
                                     border: [false, false, false, false],
-                                    alignment: 'right'
+                                    alignment: 'left'
                                 }
                             ]
                         ]
@@ -1025,18 +1025,18 @@ class FichajeApp {
                 {
                     text: [
                         { text: 'En ' },
-                        { text: 'ALBACETE', decoration: 'underline' },
+                        { text: (companyProfile && companyProfile.address ? companyProfile.address.split(',')[0].toUpperCase() : 'ALBACETE'), decoration: 'underline' },
                         { text: ', a ' },
                         { text: lastDayOfMonth.toString(), decoration: 'underline' },
                         { text: ' de ' },
-                        { text: monthName, decoration: 'underline' },
+                        { text: monthName.toUpperCase(), decoration: 'underline' },
                         { text: ' de ' },
                         { text: currentYear.toString(), decoration: 'underline' }
                     ],
                     alignment: 'right',
-                    margin: [0, 10, 40, 2]
-                },
-                {
+                    margin: [0, 20, 0, 10],
+                    fontSize: 14
+                }, {
                     text: 'Registro realizado en cumplimiento de la letra h) del artículo 1 del R.D.-Ley 16/2013, de 20 de diciembre por el que se modifica el artículo 12.5 del E.T., por el que se establece que "La jornada de los trabajadores a tiempo parcial se registrará día a día y se totalizará mensualmente, entregando copia al trabajador, junto con el recibo de salarios, del resumen de todas las horas realizadas en cada mes, tanto de las ordinarias como de las complementarias en sus distintas modalidades.\n\nEl empresario deberá conservar los resúmenes mensuales de los registros de jornada durante un periodo mínimo de cuatro años. El incumplimiento empresarial de estas obligaciones de registro tendrá por consecuencia jurídica la de que el contrato se presuma celebrado a jornada completa, salvo prueba en contrario que acredite el carácter parcial de los servicios.',
                     style: 'legalText',
                     margin: [0, 8, 0, 0]
@@ -2056,4 +2056,4 @@ class FichajeApp {
     }
 }
 document.addEventListener('DOMContentLoaded', () => { window.app = new FichajeApp(); });
-// v9.4 force deploy safe listeners
+// v9.5 force deploy alignment fix
