@@ -990,20 +990,30 @@ class FichajeApp {
                     style: 'signatureTable',
                     table: {
                         widths: ['50%', '50%'],
+                        heights: [15, 60], // Row 1: label height, Row 2: image box height
                         body: [
                             [
-                                { text: 'Firma de la empresa:', style: 'signatureLabel', alignment: 'center', border: [false, false, false, false], color: 'black' },
-                                { text: 'Firma del trabajador:', style: 'signatureLabel', alignment: 'center', border: [false, false, false, false], color: 'black' }
+                                { text: 'Firma de la empresa:', style: 'signatureLabel', alignment: 'left', border: [false, false, false, false], color: 'black' },
+                                { text: 'Firma del trabajador:', style: 'signatureLabel', alignment: 'right', border: [false, false, false, false], color: 'black' }
                             ],
                             [
-                                companySignatureImg,
-                                employeeSignatureImg
+                                {
+                                    stack: [companySignatureImg],
+                                    border: [false, false, false, false],
+                                    alignment: 'left'
+                                },
+                                {
+                                    stack: [employeeSignatureImg],
+                                    border: [false, false, false, false],
+                                    alignment: 'right'
+                                }
                             ]
                         ]
                     },
                     layout: {
                         defaultBorder: false,
                     },
+                    margin: [0, 10, 0, 0],
                     unbreakable: true
                 },
                 { text: '', margin: [0, 0] },
