@@ -36,6 +36,7 @@ class ApiService {
     async getCompanies() { return this.request('companies.php', 'GET'); }
     async saveCompany(data) { return this.request('companies.php', 'POST', data); }
     async deleteCompany(id) { return this.request('companies.php?action=delete', 'POST', { id }); }
+    async initDefaultCompany() { return this.request('init_default_company.php', 'GET'); }
     async adminUpdateUser(data) { return this.request('auth.php?action=admin_update_user', 'POST', data); }
 }
 
@@ -1132,15 +1133,20 @@ class FichajeApp {
                 this.renderSkeleton();
             }
 
+            // Initialize default company (only creates if doesn't exist)
+            await this.api.initDefaultCompany();
+
             // Fetch fresh data
             console.log('Fetching admin data...');
-            const [usersRes, fichajesRes] = await Promise.all([
+            const [usersRes, fichajesRes, companiesRes] = await Promise.all([
                 this.api.getAllUsers(),
-                this.api.getAllFichajes()
+                this.api.getAllFichajes(),
+                this.api.getCompanies()
             ]);
 
             console.log('Users Response:', usersRes);
             console.log('Fichajes Response:', fichajesRes);
+            console.log('Companies Response:', companiesRes);
 
             if (usersRes.success) {
                 this.users = usersRes.users;
@@ -1154,6 +1160,10 @@ class FichajeApp {
                 this.fichajes = fichajesRes.fichajes;
             } else {
                 this.showToast('Error cargando fichajes: ' + (fichajesRes.message || 'Error desconocido'), 'error');
+            }
+
+            if (companiesRes.success) {
+                this.companies = companiesRes.companies;
             }
 
             // Update stats
@@ -1561,15 +1571,17 @@ class FichajeApp {
 
         // Handle Company Profile
         let companyProfile = null;
-        if (user.companyProfileId) {
-            // Ensure companies are loaded
-            if (this.companies.length === 0) {
-                try {
-                    const res = await this.api.getCompanies();
-                    if (res.success) this.companies = res.companies;
-                } catch (e) { console.error('Error loading companies for PDF', e); }
-            }
 
+        // Ensure companies are loaded
+        if (this.companies.length === 0) {
+            try {
+                const res = await this.api.getCompanies();
+                if (res.success) this.companies = res.companies;
+            } catch (e) { console.error('Error loading companies for PDF', e); }
+        }
+
+        // Try to find assigned company first
+        if (user.companyProfileId) {
             const foundCompany = this.companies.find(c => c.id === user.companyProfileId);
             if (foundCompany) {
                 // Process Company Seal
@@ -1578,6 +1590,19 @@ class FichajeApp {
                     sealData = await toDataURL(sealData);
                 }
                 companyProfile = { ...foundCompany, sealImage: sealData };
+            }
+        }
+
+        // If no company assigned, use default company
+        if (!companyProfile) {
+            const defaultCompany = this.companies.find(c => c.isDefault === true);
+            if (defaultCompany) {
+                // Process Company Seal
+                let sealData = defaultCompany.sealImage;
+                if (sealData && !sealData.startsWith('data:')) {
+                    sealData = await toDataURL(sealData);
+                }
+                companyProfile = { ...defaultCompany, sealImage: sealData };
             }
         }
 

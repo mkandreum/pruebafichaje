@@ -88,6 +88,11 @@ function handleDelete()
         response(['success' => false, 'message' => 'ID requerido'], 400);
     }
 
+    // Prevent deletion of default company
+    if ($id === 'default') {
+        response(['success' => false, 'message' => 'No se puede eliminar la empresa por defecto'], 400);
+    }
+
     $companies = readJson(COMPANIES_FILE);
     $newCompanies = array_filter($companies, function($c) use ($id) {
         return $c['id'] !== $id;
