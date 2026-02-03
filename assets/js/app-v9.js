@@ -897,8 +897,17 @@ class FichajeApp {
             // I must include the loop.
             const checkDate = `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
             const dayFichajes = fichajes.filter(f => f.date === checkDate);
-            const shift1 = dayFichajes.find(f => f.shift === 1) || {};
-            const shift2 = dayFichajes.find(f => f.shift === 2) || {};
+
+            // CRITICAL FIX: Sort by entry time to ensure morning shift comes first
+            dayFichajes.sort((a, b) => {
+                const timeA = a.entryTime || '00:00';
+                const timeB = b.entryTime || '00:00';
+                return timeA.localeCompare(timeB);
+            });
+
+            // Assign shifts based on sorted order (earliest entry time = shift 1)
+            const shift1 = dayFichajes[0] || {};
+            const shift2 = dayFichajes[1] || {};
 
             let entry1 = shift1.entryTime || '';
             let exit1 = shift1.exitTime || '';
