@@ -1,46 +1,39 @@
-# AlbaFichaje - Sistema de Gestión de Fichajes
+<div align="center">
 
-Sistema web moderno para el control de horarios y fichajes, diseñado con una estética "Liquid Glass" y optimizado para dispositivos móviles y pantallas táctiles.
+# ⏱️ PruebaFichaje
 
-## 📱 Características Principales
+**Entorno de pruebas del sistema de fichaje de Xyon Platforms**
 
-- **Diseño Mobile-First**: Interfaz responsive adaptada a móviles con soporte táctil completo.
-- **Firma Digital**: Captura de firmas de entrada y salida mediante panel táctil.
-- **Gestión de Fichajes**: Registro de hora de entrada y salida con validación.
-- **Generación de PDF**: Informes mensuales completos en PDF con firmas incrustadas.
-- **Panel de Administración**: Vista para administradores para revisar fichajes de todos los empleados.
-- **Estética Premium**: Diseño estilo iOS "Liquid Glass" con efectos de transparencia y desenfoque.
+*Un proyecto interno de [Xyon Platforms](https://github.com/mkandreum)*
 
-## 🚀 Instalación y Despliegue
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)
 
-Este proyecto utiliza **PHP** como backend simple (basado en archivos JSON, sin base de datos SQL) y **Vanilla JS/CSS** para el frontend.
-
-### Requisitos
-- Servidor Web (Apache/Nginx) con soporte PHP 7.4+.
-- Permisos de escritura en la carpeta `data/` y `assets/uploads/`.
-
-### Pasos
-1. **Clonar/Copiar** los archivos al servidor web.
-2. **Permisos**: Asegúrate de que las carpetas de datos sean escribibles:
-   ```bash
-   chmod -R 777 data
-   chmod -R 777 assets/uploads
-   ```
-3. **Usuarios por Defecto**:
-   El sistema se inicializa con un archivo `users.json` si no existe. El primer registro puede hacerse desde la interfaz de "Registrarse".
-
-To reset admins manually, edit `data/users.json`.
-
-## 🛠️ Tecnologías
-
-- **Frontend**: HTML5, CSS3 (Variables, Flexbox/Grid), JavaScript (ES6+).
-- **Backend**: PHP (API REST sencilla).
-- **Almacenamiento**: Archivos JSON (en carpeta `/data`).
-- **PDF**: `pdfmake` (lado del cliente).
-
-## 📱 Uso en Móvil
-
-La aplicación está diseñada para funcionar como una Web App. Puede añadirse a la pantalla de inicio (Add to Home Screen) en iOS/Android para una experiencia de pantalla completa.
+</div>
 
 ---
-Desarrollado para Alba Luz Desarrollos Urbanos.
+
+## ¿Qué es PruebaFichaje?
+
+PruebaFichaje es el repositorio de pruebas y experimentos del sistema de control de presencia y fichaje de Xyon Platforms. Se utiliza para probar nuevas funcionalidades antes de integrarlas en el producto principal [AlbaFichaje](https://github.com/mkandreum/albafichaje).
+
+## ℹ️ Uso
+
+Este repositorio es de uso interno para el equipo de desarrollo de Xyon Platforms.
+
+```bash
+git clone https://github.com/mkandreum/pruebafichaje.git
+cd pruebafichaje
+npm install
+npm start
+```
+
+## 🔗 Relacionado
+
+- [AlbaFichaje](https://github.com/mkandreum/albafichaje) — Producto de fichaje en producción
+
+## 🏢 Xyon Platforms
+
+PruebaFichaje es un proyecto interno de **Xyon Platforms**, empresa especializada en soluciones digitales para negocios locales y pymes.
+
+> © Xyon Platforms — Todos los derechos reservados
